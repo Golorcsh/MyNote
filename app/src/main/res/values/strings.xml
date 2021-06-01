@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyNote</string>
+    <string name="floatingAddButton">FloatingAddButton</string>
+    <string name="Search">Search Note</string>
+    <string name="title_activity_edit_note">EditNote</string>
+    <string name="edit_title">title</string>
+    <string name="edit_content">content</string>
+
+
+</resources>
