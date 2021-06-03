@@ -50,7 +50,6 @@ public class NotesCRUD {
                 note.setTitle(cursor.getString(cursor.getColumnIndex(NotesDB.TITLE)));
                 note.setContent(cursor.getString(cursor.getColumnIndex(NotesDB.CONTENT)));
                 note.setCreateTime(cursor.getString(cursor.getColumnIndex(NotesDB.CREATE_TIME)));
-                Log.d(TAG, note.info());
                 notes.add(note);
             }
         } else {
@@ -62,6 +61,14 @@ public class NotesCRUD {
     // delete note by id
     public void deleteNoteByID(long id) {
         db.delete(NotesDB.TABLE_NAME, NotesDB.ID + "=" + id, null);
+    }
+
+    public void updateNote(Note note) {
+        ContentValues cv = new ContentValues();
+        // set the need change value
+        cv.put(NotesDB.TITLE, note.getTitle());
+        cv.put(NotesDB.CONTENT, note.getContent());
+        db.update(NotesDB.TABLE_NAME, cv, NotesDB.ID + "=?", new String[]{String.valueOf(note.getId())});
     }
 
 

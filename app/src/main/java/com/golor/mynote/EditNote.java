@@ -34,18 +34,21 @@ public class EditNote extends AppCompatActivity {
         // listen the back_key
         if (keyCode == KeyEvent.KEYCODE_BACK) {//返回键
             Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), dateStr());
-            notesCRUD.open();
-            if (!note.getContent().isEmpty()) {
-                notesCRUD.addNote(note);
-                // Toast remind
-                Toast.makeText(this, "Record to save", Toast.LENGTH_SHORT).show();
-            }
-            notesCRUD.close();
+            save(note);
             finish();
         }
         return super.onKeyDown(keyCode, event);
     }
 
+    public void save(Note note) {
+        notesCRUD.open();
+        if (!note.getContent().isEmpty()) {
+            notesCRUD.addNote(note);
+            // Toast remind
+            Toast.makeText(this, "Record to save", Toast.LENGTH_SHORT).show();
+        }
+        notesCRUD.close();
+    }
 
     public String dateStr() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");

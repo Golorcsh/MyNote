@@ -16,6 +16,11 @@ public class Note {
         this.createTime = createTime;
     }
 
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public long getId() {
         return id;
     }
