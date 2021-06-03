@@ -22,7 +22,8 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
     private NotesCRUD notesCRUD;
     private String title, content;
     private long id;
-    private Boolean isChanged = false;
+    private Boolean titleChanged = false;
+    private Boolean contentChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,27 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
             @Override
             public void afterTextChanged(Editable s) {
                 content = et_content.getText().toString();
-                title = et_title.getText().toString();
-                isChanged = true;
+                contentChanged = true;
             }
         });
 
+        et_title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                title = et_title.getText().toString();
+                titleChanged = true;
+            }
+        });
     }
 
     @Override
@@ -86,21 +102,21 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // listen the back_key
         if (keyCode == KeyEvent.KEYCODE_BACK) {//返回键
-            re_save(isChanged);
+            if (titleChanged || contentChanged) {
+                re_save();
+            }
             finish();
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    public void re_save(boolean isChanged) {
-        if (isChanged) {
-            Note note = new Note(et_title.getText().toString(), et_content.getText().toString());
-            note.setId(id);
-            notesCRUD.open();
-            notesCRUD.updateNote(note);
-            // Toast remind
-            Toast.makeText(this, "Changed to save", Toast.LENGTH_SHORT).show();
-            notesCRUD.close();
-        }
+    public void re_save() {
+        Note note = new Note(title, content);
+        note.setId(id);
+        notesCRUD.open();
+        notesCRUD.updateNote(note);
+        // Toast remind
+        Toast.makeText(this, "Changed to save", Toast.LENGTH_SHORT).show();
+        notesCRUD.close();
     }
 }

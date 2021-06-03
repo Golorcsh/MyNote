@@ -41,7 +41,7 @@ public class NotesCRUD {
 
     public List<Note> getAllNote() {
         List<Note> notes = new ArrayList<>();
-        String sql = "select * from notes;";
+        String sql = "select * from " + NotesDB.TABLE_NAME + ";";
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             while (cursor.moveToNext()) {

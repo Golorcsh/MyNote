@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyNote">
 
-
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
