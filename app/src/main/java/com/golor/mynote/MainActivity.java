@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText search;
     private Intent intent;
 
+    private List<Note> notes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +38,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initView() {
+        // load database
+        notesCRUD = new NotesCRUD(this);
+        //bind widget
         lv = findViewById(R.id.listView);
         addBtn = findViewById(R.id.fb_addButton);
         search = findViewById(R.id.search);
-
+        // set listener
         addBtn.setOnClickListener(this);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, SelectItem.class);
+                intent.putExtra(NotesDB.ID, notes.get(position).getId());
+                intent.putExtra(NotesDB.TITLE, notes.get(position).getTitle());
+                intent.putExtra(NotesDB.CONTENT, notes.get(position).getContent());
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -51,9 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loadAdapter() {
-        notesCRUD = new NotesCRUD(this);
         notesCRUD.open();
-        List<Note> notes = notesCRUD.getAllNote();
+        notes = notesCRUD.getAllNote();
         notesCRUD.close();
         adapter = new NoteAdapter(this, notes);
         lv.setAdapter(adapter);
