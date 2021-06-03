@@ -46,7 +46,9 @@ public class NoteAdapter extends BaseAdapter {
         TextView tv_createTime = layout.findViewById(R.id.note_item_createTime);
 
         // get value from list
+
         String content = notes.get(position).getContent();
+        content = content.length() >= 20 ? content.substring(0, 20) : content;
         String createTime = notes.get(position).getCreateTime();
 
         // set value to widget

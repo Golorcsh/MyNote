@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         intent = new Intent(this, EditNote.class);
         intent.putExtra("Flag", '1');
-        Toast.makeText(this, "跳转到EditNote页面", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "跳转到EditNote页面", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 

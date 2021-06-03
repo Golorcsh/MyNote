@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class EditNote extends AppCompatActivity {
     private EditText et_title, et_content;
@@ -34,10 +35,12 @@ public class EditNote extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {//返回键
             Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), dateStr());
             notesCRUD.open();
-            notesCRUD.addNote(note);
+            if (!note.getContent().isEmpty()) {
+                notesCRUD.addNote(note);
+                // Toast remind
+                Toast.makeText(this, "Record to save", Toast.LENGTH_SHORT).show();
+            }
             notesCRUD.close();
-            // Toast remind
-            Toast.makeText(this, "Record to save", Toast.LENGTH_SHORT).show();
             finish();
         }
         return super.onKeyDown(keyCode, event);
@@ -45,7 +48,8 @@ public class EditNote extends AppCompatActivity {
 
 
     public String dateStr() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         Date date = new Date();
         return simpleDateFormat.format(date);
     }
