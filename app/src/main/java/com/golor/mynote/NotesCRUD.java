@@ -40,7 +40,7 @@ public class NotesCRUD {
     }
 
     public List<Note> getAllNote() {
-        List<Note> notes = new ArrayList<Note>();
+        List<Note> notes = new ArrayList<>();
         String sql = "select * from notes;";
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
@@ -57,6 +57,11 @@ public class NotesCRUD {
             Log.d(TAG, "No record");
         }
         return notes;
+    }
+
+    // delete note by id
+    public void deleteNoteByID(long id) {
+        db.delete(NotesDB.TABLE_NAME, NotesDB.ID + "=" + id, null);
     }
 
 
