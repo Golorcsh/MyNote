@@ -3,9 +3,12 @@ package com.golor.mynote;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import java.util.TimeZone;
 public class EditNote extends AppCompatActivity {
     private EditText et_title, et_content;
     private NotesCRUD notesCRUD;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,45 @@ public class EditNote extends AppCompatActivity {
         et_title = findViewById(R.id.et_title);
         et_content = findViewById(R.id.et_content);
 
+        toolbar = (Toolbar) findViewById(R.id.note_toolbar);
+        toolbar.setTitle("Note");
+        toolbar.setSubtitle("write something");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_note_item, menu);
+        return true;
+    }
+
+    // toolbar item listener
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.note_toolbar_save:
+                // User chose the "Settings" item, show the app settings UI...
+                Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), dateStr());
+                save(note);
+                finish();
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     @Override

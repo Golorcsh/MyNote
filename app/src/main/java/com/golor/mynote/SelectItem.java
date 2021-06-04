@@ -1,24 +1,22 @@
 package com.golor.mynote;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 public class SelectItem extends AppCompatActivity implements View.OnClickListener {
     private EditText et_title, et_content;
-    private FloatingActionButton deleteBtn;
+    private Toolbar toolbar;
     private NotesCRUD notesCRUD;
     private String title, content;
     private long id;
@@ -33,7 +31,12 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
         // bind widget
         et_title = findViewById(R.id.et_title_item);
         et_content = findViewById(R.id.et_content_item);
-        deleteBtn = findViewById(R.id.fb_deleteButton_item);
+        toolbar = (Toolbar) findViewById(R.id.note_edit_toolbar);
+        toolbar.setTitle("Note");
+        toolbar.setSubtitle("write something");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get value from intent
         title = getIntent().getStringExtra(NotesDB.TITLE);
@@ -44,7 +47,12 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
         et_content.setText(content);
 
         // set listener
-        deleteBtn.setOnClickListener(this);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         et_content.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,18 +92,40 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            // delete button
-            case R.id.fb_deleteButton_item:
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_note_edit_item, menu);
+        return true;
+    }
+
+    // toolbar item listener
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.note_toolbar_save:
+                // User chose the "Settings" item, show the app settings UI...
+                if (titleChanged || contentChanged) {
+                    re_save();
+                }
+                finish();
+                return true;
+            case R.id.note_toolbar_delete:
                 notesCRUD.open();
                 notesCRUD.deleteNoteByID(id);
                 notesCRUD.close();
                 finish();
-                break;
-            case 0:
-                break;
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        //listener
     }
 
     @Override

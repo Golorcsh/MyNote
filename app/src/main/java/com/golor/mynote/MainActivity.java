@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Context context;
@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
                 return true;
 
             default:
