@@ -1,6 +1,7 @@
 package com.golor.mynote;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class EditNote extends AppCompatActivity {
         // bind edit_layout widget
         et_title = findViewById(R.id.et_title);
         et_content = findViewById(R.id.et_content);
+
     }
 
     @Override

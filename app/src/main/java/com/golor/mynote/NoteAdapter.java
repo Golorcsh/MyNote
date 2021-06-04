@@ -14,12 +14,23 @@ import java.util.List;
 
 public class NoteAdapter extends BaseAdapter {
     private Context context;
+    private int title_len;
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
     private List<Note> notes;
     private ConstraintLayout layout;
 
     public NoteAdapter(Context context, List<Note> notes) {
         this.context = context;
         this.notes = notes;
+        title_len = 16;
     }
 
     @Override
@@ -48,7 +59,7 @@ public class NoteAdapter extends BaseAdapter {
         // get value from list
 
         String content = notes.get(position).getContent();
-        content = content.length() >= 20 ? content.substring(0, 20) : content;
+        content = content.length() >= title_len ? content.substring(0, title_len) : content;
         String createTime = notes.get(position).getCreateTime();
 
         // set value to widget
