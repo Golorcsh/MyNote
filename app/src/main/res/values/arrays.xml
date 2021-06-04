@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="language">
-        <item>Chinese</item>
-        <item>English</item>
-    </string-array>
     <string-array name="theme">
-        <item>default</item>
-        <item>daylight</item>
-        <item>night</item>
+        <item>Theme</item>
+        <item>Systematic</item>
+        <item>Night</item>
+        <item>Daylight</item>
     </string-array>
 </resources>

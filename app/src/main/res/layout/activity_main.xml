@@ -43,6 +43,7 @@
         android:layout_marginBottom="@dimen/main_activity_floating_button"
         android:backgroundTint="@color/yellow"
         android:clickable="true"
+        android:tooltipText="@string/floatingAddButton"
         android:contentDescription="@string/floatingAddButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
