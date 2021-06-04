@@ -7,31 +7,24 @@
     android:background="@color/main_activity_background"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/search"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
-        android:autofillHints="@string/Search"
-        android:background="@drawable/input_background"
-        android:gravity="center_vertical"
-        android:hint="@string/Search"
-        android:inputType="text"
-        android:paddingLeft="15dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/main_activity_listview_margin_horizontal"
+        android:layout_marginTop="@dimen/main_activity_listview_margin_vertical"
+        android:layout_marginRight="@dimen/main_activity_listview_margin_horizontal"
         android:divider="@null"
         android:dividerHeight="10dp"
         android:fadingEdge="none"
@@ -39,17 +32,15 @@
         android:headerDividersEnabled="false"
         android:listSelector="@drawable/listview_selector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search"
-        app:layout_constraintVertical_bias="1.0"
-
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="@dimen/main_activity_floating_button"
+        android:layout_marginBottom="@dimen/main_activity_floating_button"
         android:backgroundTint="@color/yellow"
         android:clickable="true"
         android:contentDescription="@string/floatingAddButton"

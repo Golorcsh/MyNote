@@ -71,5 +71,23 @@ public class NotesCRUD {
         db.update(NotesDB.TABLE_NAME, cv, NotesDB.ID + "=?", new String[]{String.valueOf(note.getId())});
     }
 
+    public List<Note> getNotesByKeyword(String keyword) {
+        List<Note> notes = new ArrayList<>();
+        String sql = "select * from " + NotesDB.TABLE_NAME + " where " + NotesDB.TITLE + " like '%" + keyword + "%'";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                Note note = new Note();
+                note.setId(cursor.getLong(cursor.getColumnIndex(NotesDB.ID)));
+                note.setTitle(cursor.getString(cursor.getColumnIndex(NotesDB.TITLE)));
+                note.setContent(cursor.getString(cursor.getColumnIndex(NotesDB.CONTENT)));
+                note.setCreateTime(cursor.getString(cursor.getColumnIndex(NotesDB.CREATE_TIME)));
+                notes.add(note);
+            }
+        } else {
+            Log.d(TAG, "No record");
+        }
+        return notes;
+    }
 
 }

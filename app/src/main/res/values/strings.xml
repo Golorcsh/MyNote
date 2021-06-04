@@ -6,5 +6,8 @@
     <string name="edit_title">title</string>
     <string name="edit_content">content</string>
 
+    <string name="action_favorite">favorite</string>
+    <string name="action_settings">settings</string>
+    <string name="action_nightMode">night</string>
 
 </resources>
