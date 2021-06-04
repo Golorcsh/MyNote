@@ -3,7 +3,9 @@ package com.golor.mynote;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -110,6 +112,8 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
                 finish();
                 return true;
             case R.id.note_toolbar_delete:
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(500);//震动3秒
                 notesCRUD.open();
                 notesCRUD.deleteNoteByID(id);
                 notesCRUD.close();

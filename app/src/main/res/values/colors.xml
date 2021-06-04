@@ -10,6 +10,6 @@
 
     <color name="yellow">#ffc000</color>
     <color name="danger">#ff4757</color>
-    <color name="note_item_background">#ffffff</color>
+    <color name="note_item_background">#f7f7f7</color>
     <color name="main_activity_background">#f7f7f7</color>
 </resources>
