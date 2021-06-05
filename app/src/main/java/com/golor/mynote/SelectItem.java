@@ -107,7 +107,9 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
             case R.id.note_toolbar_save:
                 // User chose the "Settings" item, show the app settings UI...
                 if (titleChanged || contentChanged) {
-                    re_save();
+                    Note note = new Note(title, content);
+                    note.setId(id);
+                    utils.re_save(this, note);
                 }
                 finish();
                 return true;
@@ -137,20 +139,13 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
         // listen the back_key
         if (keyCode == KeyEvent.KEYCODE_BACK) {//返回键
             if (titleChanged || contentChanged) {
-                re_save();
+                Note note = new Note(title, content);
+                note.setId(id);
+                utils.re_save(this, note);
             }
             finish();
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    public void re_save() {
-        Note note = new Note(title, content);
-        note.setId(id);
-        notesCRUD.open();
-        notesCRUD.updateNote(note);
-        // Toast remind
-        Toast.makeText(this, "Changed to save", Toast.LENGTH_SHORT).show();
-        notesCRUD.close();
-    }
 }

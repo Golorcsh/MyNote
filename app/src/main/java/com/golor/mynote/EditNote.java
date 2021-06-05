@@ -3,6 +3,7 @@ package com.golor.mynote;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import java.util.TimeZone;
 
 public class EditNote extends AppCompatActivity {
     private EditText et_title, et_content;
+    private Note note;
     private NotesCRUD notesCRUD;
     private Toolbar toolbar;
 
@@ -59,12 +61,17 @@ public class EditNote extends AppCompatActivity {
     // toolbar item listener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        note = new Note(et_title.getText().toString(), et_content.getText().toString(), utils.dateStr());
         switch (item.getItemId()) {
             case R.id.note_toolbar_save:
                 // User chose the "Settings" item, show the app settings UI...
-                Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), dateStr());
-                save(note);
+                utils.save(this, note);
                 finish();
+                return true;
+
+            case R.id.note_toolbar_share:
+                utils.save(this, note);
+                utils.share(this, note);
                 return true;
             default:
                 // If we got here, the user's action was not recognized.
@@ -78,27 +85,12 @@ public class EditNote extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // listen the back_key
         if (keyCode == KeyEvent.KEYCODE_BACK) {//返回键
-            Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), dateStr());
-            save(note);
+            Note note = new Note(et_title.getText().toString(), et_content.getText().toString(), utils.dateStr());
+            utils.save(this, note);
             finish();
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    public void save(Note note) {
-        notesCRUD.open();
-        if (!note.getContent().isEmpty()) {
-            notesCRUD.addNote(note);
-            // Toast remind
-            Toast.makeText(this, "Record to save", Toast.LENGTH_SHORT).show();
-        }
-        notesCRUD.close();
-    }
 
-    public String dateStr() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-        Date date = new Date();
-        return simpleDateFormat.format(date);
-    }
 }
