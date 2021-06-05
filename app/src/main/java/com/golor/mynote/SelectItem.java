@@ -103,16 +103,24 @@ public class SelectItem extends AppCompatActivity implements View.OnClickListene
     // toolbar item listener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Note note = new Note(title, content);
+        note.setId(id);
         switch (item.getItemId()) {
             case R.id.note_toolbar_save:
                 // User chose the "Settings" item, show the app settings UI...
                 if (titleChanged || contentChanged) {
-                    Note note = new Note(title, content);
-                    note.setId(id);
                     utils.re_save(this, note);
                 }
                 finish();
                 return true;
+
+            case R.id.note_toolbar_share:
+                if (titleChanged || contentChanged) {
+                    utils.re_save(this, note);
+                }
+                utils.share(this, note);
+                return true;
+
             case R.id.note_toolbar_delete:
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);//震动3秒
