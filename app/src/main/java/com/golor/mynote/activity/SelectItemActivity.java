@@ -1,4 +1,4 @@
-package com.golor.mynote;
+package com.golor.mynote.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,9 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class SelectItem extends AppCompatActivity implements View.OnClickListener {
+import com.golor.mynote.R;
+import com.golor.mynote.model.Note;
+import com.golor.mynote.utils.NotesCRUD;
+import com.golor.mynote.utils.NotesDB;
+import com.golor.mynote.utils.utils;
+
+public class SelectItemActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText et_title, et_content;
     private Toolbar toolbar;
     private NotesCRUD notesCRUD;

@@ -1,4 +1,4 @@
-package com.golor.mynote;
+package com.golor.mynote.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.golor.mynote.model.Note;
 
 import java.util.ArrayList;
 import java.util.List;

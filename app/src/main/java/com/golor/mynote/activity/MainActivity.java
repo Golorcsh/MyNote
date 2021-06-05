@@ -1,7 +1,6 @@
-package com.golor.mynote;
+package com.golor.mynote.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -9,7 +8,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +16,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.golor.mynote.view.NoteAdapter;
+import com.golor.mynote.R;
+import com.golor.mynote.model.Note;
+import com.golor.mynote.utils.NotesCRUD;
+import com.golor.mynote.utils.NotesDB;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, SelectItem.class);
+                Intent intent = new Intent(MainActivity.this, SelectItemActivity.class);
                 intent.putExtra(NotesDB.ID, notes.get(position).getId());
                 intent.putExtra(NotesDB.TITLE, notes.get(position).getTitle());
                 intent.putExtra(NotesDB.CONTENT, notes.get(position).getContent());
@@ -83,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_item, menu);
-
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
@@ -120,22 +122,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-                intent = new Intent(MainActivity.this, Settings.class);
+                intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
-
     @Override
     public void onClick(View v) {
-        intent = new Intent(context, EditNote.class);
+        intent = new Intent(context, EditNoteActivity.class);
         intent.putExtra("Flag", '1');
         startActivity(intent);
     }

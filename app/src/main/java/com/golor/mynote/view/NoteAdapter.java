@@ -1,7 +1,6 @@
-package com.golor.mynote;
+package com.golor.mynote.view;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.golor.mynote.R;
+import com.golor.mynote.model.Note;
 
 import java.util.List;
 

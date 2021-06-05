@@ -1,4 +1,4 @@
-package com.golor.mynote;
+package com.golor.mynote.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,8 +9,6 @@ public class NotesDB extends SQLiteOpenHelper {
     public static final String ID = "_id";
     public static final String TITLE = "title";
     public static final String CONTENT = "content";
-    //    public static final String PATH = "path";
-//    public static final String VIDEO = "video";
     public static final String CREATE_TIME = "createTime";
 
     public NotesDB(Context context) {
@@ -33,6 +31,5 @@ public class NotesDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // callback function will be called when upgrade database;
-
     }
 }

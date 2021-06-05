@@ -1,4 +1,4 @@
-package com.golor.mynote;
+package com.golor.mynote.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -13,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Settings extends AppCompatActivity {
+import com.golor.mynote.R;
+
+public class SettingsActivity extends AppCompatActivity {
     private Context context;
     private Toolbar toolbar;
 

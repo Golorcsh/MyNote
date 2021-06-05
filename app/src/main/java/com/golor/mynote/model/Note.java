@@ -1,4 +1,4 @@
-package com.golor.mynote;
+package com.golor.mynote.model;
 
 public class Note {
     // note obj

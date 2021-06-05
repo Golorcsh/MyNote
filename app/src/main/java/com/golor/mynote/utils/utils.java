@@ -1,13 +1,14 @@
-package com.golor.mynote;
+package com.golor.mynote.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.golor.mynote.model.Note;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class utils {
 

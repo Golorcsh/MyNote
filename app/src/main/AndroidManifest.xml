@@ -29,16 +29,16 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditNote" />
-        <activity android:name=".SelectItem" />
-        <activity android:name=".Settings" />
+        <activity android:name=".activity.EditNoteActivity" />
+        <activity android:name=".activity.SelectItemActivity" />
+        <activity android:name=".activity.SettingsActivity" />
     </application>
 
 </manifest>

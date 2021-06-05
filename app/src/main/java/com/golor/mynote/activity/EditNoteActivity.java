@@ -1,9 +1,8 @@
-package com.golor.mynote;
+package com.golor.mynote.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -11,13 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import com.golor.mynote.R;
+import com.golor.mynote.model.Note;
+import com.golor.mynote.utils.NotesCRUD;
+import com.golor.mynote.utils.utils;
 
-public class EditNote extends AppCompatActivity {
+public class EditNoteActivity extends AppCompatActivity {
     private EditText et_title, et_content;
     private Note note;
     private NotesCRUD notesCRUD;
