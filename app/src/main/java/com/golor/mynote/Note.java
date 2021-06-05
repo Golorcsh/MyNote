@@ -55,6 +55,6 @@ public class Note {
 
     public String info() {
         // return the note info
-        return String.valueOf(id) + " " + title + " " + content + " " + createTime + "\n";
+        return title + "\n" + content + "\n" + createTime + "\n";
     }
 }
