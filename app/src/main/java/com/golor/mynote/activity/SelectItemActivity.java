@@ -25,7 +25,7 @@ public class SelectItemActivity extends AppCompatActivity implements View.OnClic
     private EditText et_title, et_content;
     private Toolbar toolbar;
     private NotesCRUD notesCRUD;
-    private String title, content;
+    private String title, content,createTime;
     private long id;
     private Boolean titleChanged = false;
     private Boolean contentChanged = false;
@@ -48,6 +48,7 @@ public class SelectItemActivity extends AppCompatActivity implements View.OnClic
         // get value from intent
         title = getIntent().getStringExtra(NotesDB.TITLE);
         content = getIntent().getStringExtra(NotesDB.CONTENT);
+        createTime = getIntent().getStringExtra(NotesDB.CREATE_TIME);
         id = getIntent().getLongExtra(NotesDB.ID, 0);
         //set value to widget
         et_title.setText(title);
@@ -108,7 +109,7 @@ public class SelectItemActivity extends AppCompatActivity implements View.OnClic
     // toolbar item listener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Note note = new Note(title, content);
+        Note note = new Note(title, content,createTime);
         note.setId(id);
         switch (item.getItemId()) {
             case R.id.note_toolbar_save:

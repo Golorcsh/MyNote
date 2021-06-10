@@ -55,6 +55,13 @@ public class Note {
 
     public String info() {
         // return the note info
-        return title + "\n" + content + "\n" + createTime + "\n";
+
+        String info = "";
+        if (!this.title.isEmpty())
+            info += this.title + "\n";
+        if (!this.content.isEmpty())
+            info += this.content + "\n";
+        info += createTime + "\n";
+        return info;
     }
 }

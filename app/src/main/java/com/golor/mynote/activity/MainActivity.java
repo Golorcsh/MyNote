@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra(NotesDB.ID, notes.get(position).getId());
                 intent.putExtra(NotesDB.TITLE, notes.get(position).getTitle());
                 intent.putExtra(NotesDB.CONTENT, notes.get(position).getContent());
+                intent.putExtra(NotesDB.CREATE_TIME, notes.get(position).getCreateTime());
                 startActivity(intent);
             }
         });
